@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">ConnectHub</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">Wemukelekile ku-ConnectHub</string>
+    <string name="onboarding_subtitle">Inkhundla yakho yekuxhumana yemiphakathi yaseNingizimu Afrika</string>
+    <string name="action_get_started">Cala</string>
+
+    <!-- Login -->
+    <string name="login_title">Wemukelekile futsi</string>
+    <string name="hint_email">I-imeyili</string>
+    <string name="hint_password">Liphasiwedi</string>
+    <string name="action_login">Ngena</string>
+    <string name="prompt_no_account">Awunayo i-akhawundi?</string>
+
+    <!-- Register -->
+    <string name="register_title">Dala i-akhawundi yakho</string>
+    <string name="hint_display_name">Ligama lelibonakalako</string>
+    <string name="hint_password_hint_min">Liphasiwedi (okungenani tinhlamvu letiyi-6)</string>
+    <string name="action_register">Bhalisa</string>
+    <string name="prompt_have_account">Sewuneyo i-akhawundi?</string>
+
+    <!-- Chat -->
+    <string name="hint_write_message">Bhala umlayeto…</string>
+    <string name="action_send">Tfumela</string>
+    <string name="empty_contacts_title">Akukho bantfu lohleta nabo</string>
+    <string name="empty_contacts_subtitle">Nangabe lomunye umuntfu abhalisa ku-ConnectHub, utawuvela lapha bese ucala kukhulumisana.</string>
+
+    <!-- Settings -->
+    <string name="action_settings">Tilungiselelo</string>
+    <string name="label_dark_mode">Simo lesimnyama</string>
+    <string name="label_notifications">Tatiso</string>
+    <string name="label_language">Lulwimi</string>
+    <string name="action_logout">Phuma</string>
+    <string name="signed_in_as">Ungene njenga-%1$s</string>
+</resources>

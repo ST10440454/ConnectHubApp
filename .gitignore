@@ -1,0 +1,57 @@
+# Gradle
+.gradle/
+build/
+app/build/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+captures/
+.navigation/
+
+# Local configuration (machine-specific SDK path)
+local.properties
+
+# Firebase credentials — DO NOT COMMIT
+# Each developer downloads their own from the Firebase console.
+app/google-services.json
+google-services.json
+
+# Secrets (per Part 1 design: Gradle Secrets Plugin)
+secrets.properties
+**/secrets.properties
+
+# Keystores / signing
+*.jks
+*.keystore
+keystore.properties
+
+# Build outputs
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+release/
+
+# Native
+obj/
+.externalNativeBuild/
+.cxx/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test / coverage reports
+/app/reports/
+lint-results*.html
+lint-results*.xml

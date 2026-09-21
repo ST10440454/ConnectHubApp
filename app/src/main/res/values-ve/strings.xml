@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">ConnectHub</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">Ro U ṱanganedza kha ConnectHub</string>
+    <string name="onboarding_subtitle">Bammbari ḽau ḽa u kwamana ha vhathu vha Afrika Tshipembe</string>
+    <string name="action_get_started">Thoma</string>
+
+    <!-- Login -->
+    <string name="login_title">Ro U ṱanganedza hafhu</string>
+    <string name="hint_email">Imeili</string>
+    <string name="hint_password">Phasiwede</string>
+    <string name="action_login">Dzhena</string>
+    <string name="prompt_no_account">A U na akhaunthu?</string>
+
+    <!-- Register -->
+    <string name="register_title">Sika akhaunthu yau</string>
+    <string name="hint_display_name">Dzina ḽine ḽa vhonala</string>
+    <string name="hint_password_hint_min">Phasiwede (u si fhasi ha maletere a 6)</string>
+    <string name="action_register">Ṅwalisa</string>
+    <string name="prompt_have_account">Vhukuma U na akhaunthu?</string>
+
+    <!-- Chat -->
+    <string name="hint_write_message">Ṅwala mulaedza…</string>
+    <string name="action_send">Rumela</string>
+    <string name="empty_contacts_title">A hu na vhathu vhane na amba navho</string>
+    <string name="empty_contacts_subtitle">Arali muṅwe muthu a ṅwalisa kha ConnectHub, u ḓo vhonala hafha nahone U nga thoma u amba.</string>
+
+    <!-- Settings -->
+    <string name="action_settings">Nzudzanyo</string>
+    <string name="label_dark_mode">Muhumbulo mutsu</string>
+    <string name="label_notifications">Zwiedziso</string>
+    <string name="label_language">Luambo</string>
+    <string name="action_logout">Bva</string>
+    <string name="signed_in_as">No dzhena sa %1$s</string>
+</resources>

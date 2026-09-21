@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Every logged-in user can read the users collection (needed to populate
+    // the Chats List / contacts). Each user can only write their own profile.
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // NOTE ON THIS RULE: Firestore can only allow a *list* query (like
+    // observeMessages' `where conversationId == X`) if the rule condition is
+    // statically provable from the query's own filters — it cannot re-check
+    // per-document fields like senderId/receiverId against a query that only
+    // filters by conversationId. So for this prototype, any authenticated
+    // user may read/write the messages collection. To properly restrict
+    // messages to only their two participants, add a `participants: [uidA, uidB]`
+    // array field to every message and change the app's queries to filter with
+    // `.whereArrayContains("participants", currentUid)` alongside conversationId —
+    // then this rule can safely become
+    // `allow read: if request.auth.uid in resource.data.participants;`
+    // That refactor is a good candidate for the final PoE submission.
+    match /messages/{messageId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.senderId;
+      allow update: if request.auth != null &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(["status"]);
+    }
+  }
+}

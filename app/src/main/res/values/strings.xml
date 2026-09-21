@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">ConnectHub</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">Welcome to ConnectHub</string>
+    <string name="onboarding_subtitle">Your all-in-one messaging platform for South African communities</string>
+    <string name="action_get_started">Get Started</string>
+
+    <!-- Login -->
+    <string name="login_title">Welcome back</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="action_login">Log In</string>
+    <string name="prompt_no_account">Don\'t have an account?</string>
+
+    <!-- Register -->
+    <string name="register_title">Create your account</string>
+    <string name="hint_display_name">Display name</string>
+    <string name="hint_password_hint_min">Password (min. 6 characters)</string>
+    <string name="action_register">Register</string>
+    <string name="prompt_have_account">Already have an account?</string>
+
+    <!-- Chat -->
+    <string name="hint_write_message">Write a message…</string>
+    <string name="action_send">Send</string>
+    <string name="empty_contacts_title">No contacts yet</string>
+    <string name="empty_contacts_subtitle">Once someone else registers on ConnectHub, they\'ll show up here and you can start chatting.</string>
+
+    <!-- Settings -->
+    <string name="action_settings">Settings</string>
+    <string name="label_dark_mode">Dark mode</string>
+    <string name="label_notifications">Notifications</string>
+    <string name="label_language">Language</string>
+    <string name="action_logout">Log Out</string>
+    <string name="signed_in_as">Signed in as %1$s</string>
+</resources>

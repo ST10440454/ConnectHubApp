@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">ConnectHub</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">U amukeriwile eka ConnectHub</string>
+    <string name="onboarding_subtitle">Xivandla xa wena xo hlanganisa vaaki va Afrika Dzonga</string>
+    <string name="action_get_started">Sungula</string>
+
+    <!-- Login -->
+    <string name="login_title">U amukeriwile nakambe</string>
+    <string name="hint_email">Imeyili</string>
+    <string name="hint_password">Xiphaseweti</string>
+    <string name="action_login">Nghena</string>
+    <string name="prompt_no_account">A wu na akhawunto?</string>
+
+    <!-- Register -->
+    <string name="register_title">Endla akhawunto ya wena</string>
+    <string name="hint_display_name">Vito leri vonakaka</string>
+    <string name="hint_password_hint_min">Xiphaseweti (ku nga heli eka swikhwama swa 6)</string>
+    <string name="action_register">Tsarisa</string>
+    <string name="prompt_have_account">Xana u ni akhawunto ku sukela?</string>
+
+    <!-- Chat -->
+    <string name="hint_write_message">Tsala rungula…</string>
+    <string name="action_send">Rhumela</string>
+    <string name="empty_contacts_title">A ku na vanhu lava fambisanaka na vona</string>
+    <string name="empty_contacts_subtitle">Loko un\'wana a tisarisa eka ConnectHub, u ta humelela laha kutani u nga sungula bulawurano.</string>
+
+    <!-- Settings -->
+    <string name="action_settings">Vulawulo</string>
+    <string name="label_dark_mode">Muxaka wa munyama</string>
+    <string name="label_notifications">Switiviso</string>
+    <string name="label_language">Ririmi</string>
+    <string name="action_logout">Huma</string>
+    <string name="signed_in_as">U nghene tanihi %1$s</string>
+</resources>

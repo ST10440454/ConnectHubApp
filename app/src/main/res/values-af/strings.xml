@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">ConnectHub</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">Welkom by ConnectHub</string>
+    <string name="onboarding_subtitle">Jou alles-in-een boodskapplatform vir Suid-Afrikaanse gemeenskappe</string>
+    <string name="action_get_started">Begin</string>
+
+    <!-- Login -->
+    <string name="login_title">Welkom terug</string>
+    <string name="hint_email">E-pos</string>
+    <string name="hint_password">Wagwoord</string>
+    <string name="action_login">Meld aan</string>
+    <string name="prompt_no_account">Het jy nie \'n rekening nie?</string>
+
+    <!-- Register -->
+    <string name="register_title">Skep jou rekening</string>
+    <string name="hint_display_name">Vertoonnaam</string>
+    <string name="hint_password_hint_min">Wagwoord (minstens 6 karakters)</string>
+    <string name="action_register">Registreer</string>
+    <string name="prompt_have_account">Het jy reeds \'n rekening?</string>
+
+    <!-- Chat -->
+    <string name="hint_write_message">Skryf \'n boodskap…</string>
+    <string name="action_send">Stuur</string>
+    <string name="empty_contacts_title">Nog geen kontakte nie</string>
+    <string name="empty_contacts_subtitle">Sodra iemand anders op ConnectHub registreer, sal hulle hier verskyn en jy kan begin gesels.</string>
+
+    <!-- Settings -->
+    <string name="action_settings">Instellings</string>
+    <string name="label_dark_mode">Donker modus</string>
+    <string name="label_notifications">Kennisgewings</string>
+    <string name="label_language">Taal</string>
+    <string name="action_logout">Meld af</string>
+    <string name="signed_in_as">Aangemeld as %1$s</string>
+</resources>

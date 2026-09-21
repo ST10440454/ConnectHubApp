@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">ConnectHub</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">Wamkelekile kwiConnectHub</string>
+    <string name="onboarding_subtitle">Iqonga lakho lonxibelelwano lweentlanga zoMzantsi Afrika</string>
+    <string name="action_get_started">Qalisa</string>
+
+    <!-- Login -->
+    <string name="login_title">Wamkelekile kwakhona</string>
+    <string name="hint_email">I-imeyile</string>
+    <string name="hint_password">Iphasiwedi</string>
+    <string name="action_login">Ngena</string>
+    <string name="prompt_no_account">Awunayo i-akhawunti?</string>
+
+    <!-- Register -->
+    <string name="register_title">Yenza i-akhawunti yakho</string>
+    <string name="hint_display_name">Igama elibonakalayo</string>
+    <string name="hint_password_hint_min">Iphasiwedi (ubuncinane iinombolo ezi-6)</string>
+    <string name="action_register">Bhalisa</string>
+    <string name="prompt_have_account">Sele unayo i-akhawunti?</string>
+
+    <!-- Chat -->
+    <string name="hint_write_message">Bhala umyalezo…</string>
+    <string name="action_send">Thumela</string>
+    <string name="empty_contacts_title">Akukabikho qhagamshelwano</string>
+    <string name="empty_contacts_subtitle">Xa omnye umntu ebhalisa kwiConnectHub, uya kuvela apha ukwenzela ukuba uqalise incoko.</string>
+
+    <!-- Settings -->
+    <string name="action_settings">Iisetingi</string>
+    <string name="label_dark_mode">Imowudi emnyama</string>
+    <string name="label_notifications">Izaziso</string>
+    <string name="label_language">Ulwimi</string>
+    <string name="action_logout">Phuma</string>
+    <string name="signed_in_as">Ungene njenge-%1$s</string>
+</resources>

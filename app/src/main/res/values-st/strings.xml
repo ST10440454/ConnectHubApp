@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">ConnectHub</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">Rea u amohela ho ConnectHub</string>
+    <string name="onboarding_subtitle">Sethala sa hao sa dikgokahano bakeng sa dichaba tsa Afrika Borwa</string>
+    <string name="action_get_started">Qala</string>
+
+    <!-- Login -->
+    <string name="login_title">Rea u amohela hape</string>
+    <string name="hint_email">Imeile</string>
+    <string name="hint_password">Phasewete</string>
+    <string name="action_login">Kena</string>
+    <string name="prompt_no_account">Ha u na akhaonto?</string>
+
+    <!-- Register -->
+    <string name="register_title">Theha akhaonto ya hao</string>
+    <string name="hint_display_name">Lebitso le bonahalang</string>
+    <string name="hint_password_hint_min">Phasewete (bonyane ditlhaku tse 6)</string>
+    <string name="action_register">Ingodisa</string>
+    <string name="prompt_have_account">Na u se u na le akhaonto?</string>
+
+    <!-- Chat -->
+    <string name="hint_write_message">Ngola molaetsa…</string>
+    <string name="action_send">Romela</string>
+    <string name="empty_contacts_title">Ha ho na batho ba amanang le bona</string>
+    <string name="empty_contacts_subtitle">Ha motho e mong a ingodisa ho ConnectHub, o tla hlaha mona mme u ka qala ho buisana.</string>
+
+    <!-- Settings -->
+    <string name="action_settings">Disetingi</string>
+    <string name="label_dark_mode">Mokgwa o lefifi</string>
+    <string name="label_notifications">Ditsebiso</string>
+    <string name="label_language">Puo</string>
+    <string name="action_logout">Tswa</string>
+    <string name="signed_in_as">U kene jwalo ka %1$s</string>
+</resources>
