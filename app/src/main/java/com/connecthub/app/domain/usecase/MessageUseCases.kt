@@ -2,6 +2,7 @@ package com.connecthub.app.domain.usecase
 
 import com.connecthub.app.domain.model.ConversationPreview
 import com.connecthub.app.domain.model.Message
+import com.connecthub.app.domain.model.MessageType
 import com.connecthub.app.domain.model.conversationIdFor
 import com.connecthub.app.domain.repository.AuthRepository
 import com.connecthub.app.domain.repository.ContactRepository
@@ -17,6 +18,27 @@ class SendMessageUseCase(private val messageRepository: MessageRepository) {
             return AppResult.Error("Message cannot be empty.")
         }
         return messageRepository.sendMessage(conversationId, receiverId, content.trim())
+    }
+}
+
+class SendImageMessageUseCase(private val messageRepository: MessageRepository) {
+    suspend operator fun invoke(
+        conversationId: String,
+        receiverId: String,
+        imageBytes: ByteArray,
+        mimeType: String
+    ): AppResult<Unit> {
+        if (imageBytes.isEmpty()) {
+            return AppResult.Error("Couldn't read that image. Please try a different one.")
+        }
+        if (imageBytes.size > MAX_IMAGE_BYTES) {
+            return AppResult.Error("That image is too large to send (max 8 MB).")
+        }
+        return messageRepository.sendImageMessage(conversationId, receiverId, imageBytes, mimeType)
+    }
+
+    private companion object {
+        const val MAX_IMAGE_BYTES = 8 * 1024 * 1024 // 8 MB
     }
 }
 
@@ -50,6 +72,7 @@ class ObserveConversationsUseCase(
                     contact = contact,
                     conversationId = conversationId,
                     lastMessage = lastMessage?.content,
+                    lastMessageIsImage = lastMessage?.type == MessageType.IMAGE,
                     lastMessageTimestampMillis = lastMessage?.timestampMillis,
                     lastMessageIsOwn = lastMessage?.senderId == currentUserId
                 )

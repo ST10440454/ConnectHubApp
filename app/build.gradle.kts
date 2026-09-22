@@ -1,6 +1,9 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -40,11 +43,17 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
 }
 
 dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.core:core-ktx:1.19.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.6.0")
     implementation("androidx.credentials:credentials:1.6.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.2.0")

@@ -11,8 +11,7 @@ object Validators {
 
     fun isValidEmail(email: String): Boolean {
         if (email.isBlank()) return false
-        // Basic email validation regex to avoid android.util.Patterns dependency in unit tests
-        return Patterns.EMAIL_ADDRESS?.matcher(email)?.matches() ?: email.contains("@")
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     fun isValidPassword(password: String): Boolean {

@@ -17,7 +17,14 @@ class ContactRepositoryImpl(
         return firestoreService.observeUsers().map { userDtos ->
             userDtos
                 .filter { it.uid != currentUid && it.uid.isNotBlank() }
-                .map { Contact(uid = it.uid, displayName = it.displayName, email = it.email) }
+                .map {
+                    Contact(
+                        uid = it.uid,
+                        displayName = it.displayName,
+                        email = it.email,
+                        phoneNumber = it.phoneNumber.takeIf { phone -> phone.isNotBlank() }
+                    )
+                }
                 .sortedBy { it.displayName.lowercase() }
         }
     }

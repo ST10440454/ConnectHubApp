@@ -2,6 +2,8 @@ package com.connecthub.app.domain.model
 
 enum class MessageStatus { SENT, DELIVERED, READ }
 
+enum class MessageType { TEXT, IMAGE }
+
 data class Message(
     val id: String = "",
     val conversationId: String,
@@ -9,6 +11,8 @@ data class Message(
     val senderName: String,
     val receiverId: String,
     val content: String,
+    val type: MessageType = MessageType.TEXT,
+    val imageUrl: String? = null,
     val timestampMillis: Long,
     val status: MessageStatus = MessageStatus.SENT
 )

@@ -17,14 +17,28 @@
     <string name="register_title">Dala i-akhawundi yakho</string>
     <string name="hint_display_name">Ligama lelibonakalako</string>
     <string name="hint_password_hint_min">Liphasiwedi (okungenani tinhlamvu letiyi-6)</string>
+    <string name="hint_phone_optional">Inombolo yelucingo (akuphocelekile)</string>
+    <string name="hint_phone_helper">Faka loku kuze bantfu labakuluhlu lwakho balutfole ku-ConnectHub</string>
     <string name="action_register">Bhalisa</string>
     <string name="prompt_have_account">Sewuneyo i-akhawundi?</string>
 
     <!-- Chat -->
     <string name="hint_write_message">Bhala umlayeto…</string>
     <string name="action_send">Tfumela</string>
+    <string name="action_attach_image">Nameka sitfombe</string>
+    <string name="content_description_shared_image">Sitfombe lesabiwe</string>
     <string name="empty_contacts_title">Akukho bantfu lohleta nabo</string>
     <string name="empty_contacts_subtitle">Nangabe lomunye umuntfu abhalisa ku-ConnectHub, utawuvela lapha bese ucala kukhulumisana.</string>
+
+    <!-- New Chat / Device Contacts -->
+    <string name="new_chat_title">Inkhulumo Lensha</string>
+    <string name="on_connecthub">Ku-ConnectHub</string>
+    <string name="action_chat">Khuluma</string>
+    <string name="action_invite">Mema</string>
+    <string name="contacts_permission_denied_title">Kudzingeka imvumo yebantfu labaphatsana nabo</string>
+    <string name="contacts_permission_denied_subtitle">Kuze utfole bantfu labaphatsana nabo ku-ConnectHub, vumela imvumo yebo kutilungiselelweni telucingo lwakho.</string>
+    <string name="action_open_app_settings">Vula Tilungiselelo</string>
+    <string name="invite_message_body">Sawubona! Ngisebentisa i-ConnectHub kukhuluma. Layisha kute sixhumane!</string>
 
     <!-- Settings -->
     <string name="action_settings">Tilungiselelo</string>

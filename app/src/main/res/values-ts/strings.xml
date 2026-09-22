@@ -17,14 +17,28 @@
     <string name="register_title">Endla akhawunto ya wena</string>
     <string name="hint_display_name">Vito leri vonakaka</string>
     <string name="hint_password_hint_min">Xiphaseweti (ku nga heli eka swikhwama swa 6)</string>
+    <string name="hint_phone_optional">Nomboro ya foni (a yi lavekiwi)</string>
+    <string name="hint_phone_helper">Engetela leswi leswaku vanhu lava nga eka switiviso swa wena va ku kuma eka ConnectHub</string>
     <string name="action_register">Tsarisa</string>
     <string name="prompt_have_account">Xana u ni akhawunto ku sukela?</string>
 
     <!-- Chat -->
     <string name="hint_write_message">Tsala rungula…</string>
     <string name="action_send">Rhumela</string>
+    <string name="action_attach_image">Namarhela xifaniso</string>
+    <string name="content_description_shared_image">Xifaniso lexi avelanaka</string>
     <string name="empty_contacts_title">A ku na vanhu lava fambisanaka na vona</string>
     <string name="empty_contacts_subtitle">Loko un\'wana a tisarisa eka ConnectHub, u ta humelela laha kutani u nga sungula bulawurano.</string>
+
+    <!-- New Chat / Device Contacts -->
+    <string name="new_chat_title">Bulawurano Lebyintshwa</string>
+    <string name="on_connecthub">Eka ConnectHub</string>
+    <string name="action_chat">Bulawurana</string>
+    <string name="action_invite">Rhambela</string>
+    <string name="contacts_permission_denied_title">Ku laveka mpfumelelo wa vaxavuxi</string>
+    <string name="contacts_permission_denied_subtitle">Leswaku u kuma vaxavuxi va wena eka ConnectHub, pfumelela mpfumelelo eka vaxavuxi eka switiviso swa foni ya wena.</string>
+    <string name="action_open_app_settings">Pfula Switiviso</string>
+    <string name="invite_message_body">Xewani! Ndzi tirhisa ConnectHub ku bulawurana. Download u papalata hi hlanganisiwa!</string>
 
     <!-- Settings -->
     <string name="action_settings">Vulawulo</string>

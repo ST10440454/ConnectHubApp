@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.connecthub.app.ui.onboarding.OnboardingFragment"
+        android:name="com.connecthub.app.presentation.onboarding.OnboardingFragment"
         android:label="@string/onboarding_title"
         tools:layout="@layout/fragment_onboarding">
 
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.connecthub.app.ui.auth.LoginFragment"
+        android:name="com.connecthub.app.presentation.auth.LoginFragment"
         android:label="@string/login_title"
         tools:layout="@layout/fragment_login">
 
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.connecthub.app.ui.auth.RegisterFragment"
+        android:name="com.connecthub.app.presentation.auth.RegisterFragment"
         android:label="@string/register_title"
         tools:layout="@layout/fragment_register">
 
@@ -56,7 +56,7 @@
 
     <fragment
         android:id="@+id/chatListFragment"
-        android:name="com.connecthub.app.ui.chatlist.ChatListFragment"
+        android:name="com.connecthub.app.presentation.chatlist.ChatListFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_chat_list">
 
@@ -67,17 +67,33 @@
         <action
             android:id="@+id/action_chatList_to_settings"
             app:destination="@id/settingsFragment" />
+
+        <action
+            android:id="@+id/action_chatList_to_newChat"
+            app:destination="@id/newChatFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newChatFragment"
+        android:name="com.connecthub.app.presentation.newchat.NewChatFragment"
+        android:label="@string/new_chat_title"
+        tools:layout="@layout/fragment_new_chat">
+
+        <action
+            android:id="@+id/action_newChat_to_chat"
+            app:destination="@id/chatFragment"
+            app:popUpTo="@id/chatListFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.connecthub.app.ui.chat.ChatFragment"
+        android:name="com.connecthub.app.presentation.chat.ChatFragment"
         android:label="Chat"
         tools:layout="@layout/fragment_chat" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.connecthub.app.ui.settings.SettingsFragment"
+        android:name="com.connecthub.app.presentation.settings.SettingsFragment"
         android:label="@string/action_settings"
         tools:layout="@layout/fragment_settings">
 

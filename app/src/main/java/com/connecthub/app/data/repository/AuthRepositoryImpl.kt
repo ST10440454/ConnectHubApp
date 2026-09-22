@@ -13,13 +13,32 @@ class AuthRepositoryImpl(
     private val firestoreService: FirestoreService
 ) : AuthRepository {
 
-    override suspend fun register(displayName: String, email: String, password: String): AppResult<User> {
+    override suspend fun register(
+        displayName: String,
+        email: String,
+        password: String,
+        phoneNumber: String?
+    ): AppResult<User> {
         return try {
             val uid = authService.register(email, password)
             val createdAt = System.currentTimeMillis()
-            val userDto = UserDto(uid = uid, displayName = displayName, email = email, createdAt = createdAt)
+            val userDto = UserDto(
+                uid = uid,
+                displayName = displayName,
+                email = email,
+                phoneNumber = phoneNumber.orEmpty(),
+                createdAt = createdAt
+            )
             firestoreService.createUserProfile(userDto)
-            AppResult.Success(User(uid, displayName, email, createdAt))
+            AppResult.Success(
+                User(
+                    uid = uid,
+                    displayName = displayName,
+                    email = email,
+                    phoneNumber = phoneNumber,
+                    createdAtMillis = createdAt
+                )
+            )
         } catch (e: Exception) {
             AppResult.Error(e.toFriendlyMessage())
         }
@@ -33,6 +52,7 @@ class AuthRepositoryImpl(
                 uid = uid,
                 displayName = profile?.displayName ?: email.substringBefore("@"),
                 email = email,
+                phoneNumber = profile?.phoneNumber?.takeIf { it.isNotBlank() },
                 createdAtMillis = profile?.createdAt ?: 0L
             )
             AppResult.Success(user)
@@ -46,6 +66,6 @@ class AuthRepositoryImpl(
     override fun currentUser(): User? {
         val uid = authService.currentUid() ?: return null
         val email = authService.currentEmail() ?: return null
-        return User(uid, email.substringBefore("@"), email, 0L)
+        return User(uid = uid, displayName = email.substringBefore("@"), email = email, createdAtMillis = 0L)
     }
 }

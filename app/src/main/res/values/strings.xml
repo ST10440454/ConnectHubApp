@@ -17,14 +17,28 @@
     <string name="register_title">Create your account</string>
     <string name="hint_display_name">Display name</string>
     <string name="hint_password_hint_min">Password (min. 6 characters)</string>
+    <string name="hint_phone_optional">Phone number (optional)</string>
+    <string name="hint_phone_helper">Add this so people in your contacts can find you on ConnectHub</string>
     <string name="action_register">Register</string>
     <string name="prompt_have_account">Already have an account?</string>
 
     <!-- Chat -->
     <string name="hint_write_message">Write a message…</string>
     <string name="action_send">Send</string>
+    <string name="action_attach_image">Attach image</string>
+    <string name="content_description_shared_image">Shared image</string>
     <string name="empty_contacts_title">No contacts yet</string>
     <string name="empty_contacts_subtitle">Once someone else registers on ConnectHub, they\'ll show up here and you can start chatting.</string>
+
+    <!-- New Chat / Device Contacts -->
+    <string name="new_chat_title">New Chat</string>
+    <string name="on_connecthub">On ConnectHub</string>
+    <string name="action_chat">Chat</string>
+    <string name="action_invite">Invite</string>
+    <string name="contacts_permission_denied_title">Contacts access needed</string>
+    <string name="contacts_permission_denied_subtitle">To find your contacts on ConnectHub, allow access to your contacts in your phone\'s app settings.</string>
+    <string name="action_open_app_settings">Open Settings</string>
+    <string name="invite_message_body">Hey! I\'m using ConnectHub to chat. Download it and let\'s connect!</string>
 
     <!-- Settings -->
     <string name="action_settings">Settings</string>

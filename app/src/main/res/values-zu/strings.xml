@@ -17,14 +17,28 @@
     <string name="register_title">Dala i-akhawunti yakho</string>
     <string name="hint_display_name">Igama elibonakalayo</string>
     <string name="hint_password_hint_min">Iphasiwedi (okungenani izinhlamvu ezingu-6)</string>
+    <string name="hint_phone_optional">Inombolo yocingo (akuphoqelekile)</string>
+    <string name="hint_phone_helper">Yengeza lokhu ukuze abantu abakuthinti bakho bakuthole ku-ConnectHub</string>
     <string name="action_register">Bhalisa</string>
     <string name="prompt_have_account">Usunayo i-akhawunti?</string>
 
     <!-- Chat -->
     <string name="hint_write_message">Bhala umlayezo…</string>
     <string name="action_send">Thumela</string>
+    <string name="action_attach_image">Faka isithombe</string>
+    <string name="content_description_shared_image">Isithombe esabelwene ngaso</string>
     <string name="empty_contacts_title">Azikho oxhumana nabo okwamanje</string>
     <string name="empty_contacts_subtitle">Uma omunye umuntu ebhalisa ku-ConnectHub, uzovela lapha bese uqala ukuxoxa.</string>
+
+    <!-- New Chat / Device Contacts -->
+    <string name="new_chat_title">Ingxoxo Entsha</string>
+    <string name="on_connecthub">Ku-ConnectHub</string>
+    <string name="action_chat">Xoxa</string>
+    <string name="action_invite">Mema</string>
+    <string name="contacts_permission_denied_title">Kudingeka ukufinyelela kothintana nabo</string>
+    <string name="contacts_permission_denied_subtitle">Ukuze uthole othintana nabo ku-ConnectHub, vumela ukufinyelela kothintana nabo ezilungiselelweni zefoni yakho.</string>
+    <string name="action_open_app_settings">Vula Izilungiselelo</string>
+    <string name="invite_message_body">Sawubona! Ngisebenzisa i-ConnectHub ukuxoxa. Layisha bese sixhumana!</string>
 
     <!-- Settings -->
     <string name="action_settings">Izilungiselelo</string>

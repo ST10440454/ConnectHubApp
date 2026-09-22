@@ -17,14 +17,28 @@
     <string name="register_title">Skep jou rekening</string>
     <string name="hint_display_name">Vertoonnaam</string>
     <string name="hint_password_hint_min">Wagwoord (minstens 6 karakters)</string>
+    <string name="hint_phone_optional">Foonnommer (opsioneel)</string>
+    <string name="hint_phone_helper">Voeg dit by sodat mense in jou kontakte jou op ConnectHub kan vind</string>
     <string name="action_register">Registreer</string>
     <string name="prompt_have_account">Het jy reeds \'n rekening?</string>
 
     <!-- Chat -->
     <string name="hint_write_message">Skryf \'n boodskap…</string>
     <string name="action_send">Stuur</string>
+    <string name="action_attach_image">Heg beeld aan</string>
+    <string name="content_description_shared_image">Gedeelde beeld</string>
     <string name="empty_contacts_title">Nog geen kontakte nie</string>
     <string name="empty_contacts_subtitle">Sodra iemand anders op ConnectHub registreer, sal hulle hier verskyn en jy kan begin gesels.</string>
+
+    <!-- New Chat / Device Contacts -->
+    <string name="new_chat_title">Nuwe Klets</string>
+    <string name="on_connecthub">Op ConnectHub</string>
+    <string name="action_chat">Klets</string>
+    <string name="action_invite">Nooi uit</string>
+    <string name="contacts_permission_denied_title">Kontaktoegang nodig</string>
+    <string name="contacts_permission_denied_subtitle">Om jou kontakte op ConnectHub te vind, laat toegang tot jou kontakte toe in jou foon se toepassinginstellings.</string>
+    <string name="action_open_app_settings">Maak Instellings oop</string>
+    <string name="invite_message_body">Haai! Ek gebruik ConnectHub om te klets. Laai dit af sodat ons kan skakel!</string>
 
     <!-- Settings -->
     <string name="action_settings">Instellings</string>

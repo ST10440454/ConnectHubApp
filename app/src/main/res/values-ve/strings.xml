@@ -17,14 +17,28 @@
     <string name="register_title">Sika akhaunthu yau</string>
     <string name="hint_display_name">Dzina ḽine ḽa vhonala</string>
     <string name="hint_password_hint_min">Phasiwede (u si fhasi ha maletere a 6)</string>
+    <string name="hint_phone_optional">Nomboro ya luranzhi (a yo ngo tea)</string>
+    <string name="hint_phone_helper">Ita hezwi u itela uri vhathu vha re kha thendelano yau vha ni wana kha ConnectHub</string>
     <string name="action_register">Ṅwalisa</string>
     <string name="prompt_have_account">Vhukuma U na akhaunthu?</string>
 
     <!-- Chat -->
     <string name="hint_write_message">Ṅwala mulaedza…</string>
     <string name="action_send">Rumela</string>
+    <string name="action_attach_image">Namatedza tshifanyiso</string>
+    <string name="content_description_shared_image">Tshifanyiso tsho tsheedzwaho</string>
     <string name="empty_contacts_title">A hu na vhathu vhane na amba navho</string>
     <string name="empty_contacts_subtitle">Arali muṅwe muthu a ṅwalisa kha ConnectHub, u ḓo vhonala hafha nahone U nga thoma u amba.</string>
+
+    <!-- New Chat / Device Contacts -->
+    <string name="new_chat_title">Nyambedzano Ntswa</string>
+    <string name="on_connecthub">Kha ConnectHub</string>
+    <string name="action_chat">Amba</string>
+    <string name="action_invite">Rambela</string>
+    <string name="contacts_permission_denied_title">Ho tea mvumelelo ya vhukwamani</string>
+    <string name="contacts_permission_denied_subtitle">U itela u wana vhukwamani hau kha ConnectHub, tendela mvumelelo ya vhukwamani kha zwiimo zwa luranzhi lwau.</string>
+    <string name="action_open_app_settings">Vula Zwiimo</string>
+    <string name="invite_message_body">Ndaa! Ndi khou shumisa ConnectHub u amba. Dzhenisa nahone ri kwame!</string>
 
     <!-- Settings -->
     <string name="action_settings">Nzudzanyo</string>

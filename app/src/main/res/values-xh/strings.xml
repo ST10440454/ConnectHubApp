@@ -17,14 +17,28 @@
     <string name="register_title">Yenza i-akhawunti yakho</string>
     <string name="hint_display_name">Igama elibonakalayo</string>
     <string name="hint_password_hint_min">Iphasiwedi (ubuncinane iinombolo ezi-6)</string>
+    <string name="hint_phone_optional">Inombolo yefowuni (akunyanzelekanga)</string>
+    <string name="hint_phone_helper">Yongeza oku ukuze abantu abakwii-contact zakho bakufumane kwiConnectHub</string>
     <string name="action_register">Bhalisa</string>
     <string name="prompt_have_account">Sele unayo i-akhawunti?</string>
 
     <!-- Chat -->
     <string name="hint_write_message">Bhala umyalezo…</string>
     <string name="action_send">Thumela</string>
+    <string name="action_attach_image">Ncamathisela umfanekiso</string>
+    <string name="content_description_shared_image">Umfanekiso owabelwene ngawo</string>
     <string name="empty_contacts_title">Akukabikho qhagamshelwano</string>
     <string name="empty_contacts_subtitle">Xa omnye umntu ebhalisa kwiConnectHub, uya kuvela apha ukwenzela ukuba uqalise incoko.</string>
+
+    <!-- New Chat / Device Contacts -->
+    <string name="new_chat_title">Incoko Entsha</string>
+    <string name="on_connecthub">KwiConnectHub</string>
+    <string name="action_chat">Ncokola</string>
+    <string name="action_invite">Mema</string>
+    <string name="contacts_permission_denied_title">Kufuneka ufikelelo kubaqhagamshelwano</string>
+    <string name="contacts_permission_denied_subtitle">Ukuze ufumane abaqhagamshelwano bakho kwiConnectHub, vumela ufikelelo kubaqhagamshelwano kwiisetingi zefowuni yakho.</string>
+    <string name="action_open_app_settings">Vula Iisetingi</string>
+    <string name="invite_message_body">Molo! Ndisebenzisa iConnectHub ukuncokola. Khuphela kwaye masidibane!</string>
 
     <!-- Settings -->
     <string name="action_settings">Iisetingi</string>

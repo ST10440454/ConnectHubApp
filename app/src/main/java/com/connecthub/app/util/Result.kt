@@ -32,6 +32,10 @@ fun Exception.toFriendlyMessage(): String {
             "No internet connection. Check your network and try again."
         raw.contains("weak password", ignoreCase = true) ->
             "Password should be at least 6 characters."
+        raw.contains("Object does not exist", ignoreCase = true) ->
+            "That image is no longer available."
+        raw.contains("does not have permission", ignoreCase = true) && raw.contains("storage", ignoreCase = true) ->
+            "Couldn't upload the image — check Firebase Storage is set up (see README)."
         else -> raw
     }
 }

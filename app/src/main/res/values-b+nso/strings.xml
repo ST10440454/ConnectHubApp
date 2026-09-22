@@ -17,14 +17,28 @@
     <string name="register_title">Hlama akhaonto ya gago</string>
     <string name="hint_display_name">Leina leo le bonagalago</string>
     <string name="hint_password_hint_min">Phasewete (bonyenyane ditlhaka tše 6)</string>
+    <string name="hint_phone_optional">Nomoro ya mogala (ga e a gapeletšega)</string>
+    <string name="hint_phone_helper">Oketša se gore batho bao ba lego dikgokaganong tša gago ba go hwetše go ConnectHub</string>
     <string name="action_register">Ngwadiša</string>
     <string name="prompt_have_account">Na o šetše o na le akhaonto?</string>
 
     <!-- Chat -->
     <string name="hint_write_message">Ngwala molaetša…</string>
     <string name="action_send">Romela</string>
+    <string name="action_attach_image">Kgomaretša seswantšho</string>
+    <string name="content_description_shared_image">Seswantšho seo se abelanwego</string>
     <string name="empty_contacts_title">Ga go na batho bao o ka boledišanago le bona</string>
     <string name="empty_contacts_subtitle">Ge motho yo mongwe a ingwadiša go ConnectHub, o tla tšwelela mo gomme o kgone go thoma poledišano.</string>
+
+    <!-- New Chat / Device Contacts -->
+    <string name="new_chat_title">Poledišano e Mpsha</string>
+    <string name="on_connecthub">Go ConnectHub</string>
+    <string name="action_chat">Bolela</string>
+    <string name="action_invite">Laletša</string>
+    <string name="contacts_permission_denied_title">Go hlokega tumelelo ya dikgokagano</string>
+    <string name="contacts_permission_denied_subtitle">Go hwetša dikgokagano tša gago go ConnectHub, dumelela tumelelo ya dikgokagano dipeakanyong tša mogala wa gago.</string>
+    <string name="action_open_app_settings">Bula Dipeakanyo</string>
+    <string name="invite_message_body">Dumela! Ke diriša ConnectHub go bolela. Laolla gomme re gokagane!</string>
 
     <!-- Settings -->
     <string name="action_settings">Dipeakanyo</string>

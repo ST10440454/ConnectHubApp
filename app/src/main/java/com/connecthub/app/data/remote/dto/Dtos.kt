@@ -5,6 +5,7 @@ data class UserDto(
     val uid: String = "",
     val displayName: String = "",
     val email: String = "",
+    val phoneNumber: String = "",
     val createdAt: Long = 0L
 )
 
@@ -15,6 +16,8 @@ data class MessageDto(
     val senderName: String = "",
     val receiverId: String = "",
     val content: String = "",
+    val type: String = "TEXT",
+    val imageUrl: String = "",
     val timestamp: Long = 0L,
     val status: String = "SENT"
 )
