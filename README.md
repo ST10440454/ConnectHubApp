@@ -155,7 +155,7 @@ is waiting without opening the conversation.
 
 ## 6. Run the app
 
-Since this is a real 1:1 messaging app, you'll want **two accounts** to properly test
+You will need **two accounts** to properly test
 conversations — either two emulators, an emulator + a physical device, or two physical
 devices.
 
@@ -192,37 +192,8 @@ devices.
     text, not the content of chat messages you've typed or received — see Section 3
     for why.
 
-## 7. Run the unit tests
 
-In Android Studio: right-click `app/src/test/java/com/connecthub/app` → **Run Tests**.
-Or from the command line:
-
-```bash
-./gradlew testDebugUnitTest
-```
-
-Tests cover:
-- `ValidatorsTest` — pure input-validation logic (password length, name length, message length)
-- `AuthUseCasesTest` — register/login use cases against a fake repository (validation
-  short-circuit, success path, and repository-failure propagation)
-- `MessageUseCasesTest` — send-message use case (conversation-scoped: blank rejection,
-  trimming, correct conversationId/receiverId propagation, failure propagation)
-- `ConversationIdTest` — the deterministic conversation-ID helper (order-independence,
-  correct sort/join behaviour)
-- `SupportedLanguagesTest` — the 11-language list, including that Venda is present
-- `SendImageMessageUseCaseTest` — image size validation (empty/oversized rejection),
-  successful upload path, repository-failure propagation
-- `NormalizePhoneNumberTest` — phone number matching logic (international vs. local
-  format, punctuation stripping)
-- `GetDeviceContactMatchesUseCaseTest` — device-contact-to-registered-user matching,
-  including the documented no-phone-number limitation
-
-> Note: `Validators.isValidEmail` uses `android.util.Patterns`, which isn't available in
-> a plain JVM unit test. It's exercised implicitly through the UI/instrumented flow. If
-> you want it directly unit tested, add Robolectric and annotate the test class with
-> `@RunWith(RobolectricTestRunner::class)`.
-
-## 8. What's implemented vs. deferred
+## 6. What's implemented vs. deferred
 
 **Implemented (Part 2 scope):**
 - Onboarding screen (branded welcome, first thing a fresh/logged-out user sees)
@@ -254,28 +225,7 @@ Tests cover:
 - Unit tests for validators, use cases (incl. the conversation ID helper, image-message
   validation, and device-contact matching), and the supported-languages list
 
-**Deferred to final PoE** (per Part 1 design document):
-- Community Boards (hyperlocal boards, board posts)
-- Gamification (Hub Points, leaderboard)
-- Data-Smart Mode (compression toggle for data saving)
-- Offline message queue with smart sync
-- Delivered status (`MessageStatus.DELIVERED`) exists in the model but isn't currently
-  set by any code path — messages go straight from SENT to READ. Wiring DELIVERED
-  properly would need an "online presence" or FCM-delivery-confirmation mechanism.
-- Tightening `firestore.rules`/`storage.rules` so reads are cryptographically
-  restricted to conversation participants only (see the long comment in
-  `firestore.rules` for the `participants` array-field approach)
-- Native-speaker review of the Xitsonga, siSwati, isiNdebele, and Tshivenda string
-  translations specifically — these are the lowest-confidence of the 11 (see Section 3)
-- Live message-content translation (as opposed to static UI localization) — deliberately
-  out of scope, see Section 3 for the billing-related reasoning
-- Image compression before upload (currently the original picked image is uploaded
-  as-is, capped only at 8 MB — Data-Smart Mode above would be a natural place to add
-  this)
-- Custom Ktor backend (currently using Firebase SDK directly, which satisfies the
-  "hosted REST API/database" requirement for Part 2)
-
-## 9. Project structure
+## 7. Project structure
 
 ```
 domain/
@@ -364,34 +314,3 @@ which batch-updates any Firestore message where the current user is the receiver
 status isn't already READ. `MessageAdapter` reflects this with three tick states:
 single (SENT), double white (DELIVERED — not currently set by any code path, see
 Section 6), double gold (READ).
-
-## 10. Recording your demo video
-
-Since this is a real 1:1 messaging app, the most convincing demo uses **two
-devices/emulators side by side** so the marker can see messages arrive live on both
-ends — that's the clearest possible proof the backend is real and hosted, not mocked.
-
-Suggested flow:
-1. Voice-over: app name, purpose, one sentence on architecture (MVI + Clean
-   Architecture, Fragments + Navigation Component)
-2. Show the Onboarding screen, tap Get Started
-3. Register a new user (Account A) → show it appear in Firebase Console
-   (Authentication tab and Firestore `users` collection) live
-4. Trigger an invalid input (empty field, bad email, short password) → show the
-   graceful inline error, no crash
-5. On a second device/emulator, register a second user (Account B)
-6. On Account A's Chats List, show Account B now appears in the list automatically
-7. Open the conversation, send a message from A → show it land in Firestore's
-   `messages` collection in real time, with its `conversationId` field visible
-8. Switch to Account B's device, open the same conversation, show the message arrived
-   → show Account A's message ticks turn gold (read) back on Account A's screen
-9. On Settings, toggle dark mode + notifications → kill/reopen the app → show the
-   toggle state persisted
-10. Still in Settings, switch the language to isiZulu (or another supported language)
-    → show the app's own labels change immediately
-11. Voice-over closing: name what's deferred to the final PoE (Community Boards,
-    Gamification, Data-Smart Mode, etc.) and briefly why each was deprioritised for
-    this prototype stage
-
-Keep it under your module's time limit — script the voice-over lines in advance so
-you're not narrating live on camera and running long.
