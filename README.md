@@ -1,5 +1,7 @@
 # ConnectHub — Part 2 Prototype
-**Presentation:**https://youtu.be/7Px73yH0JKo
+## Presentation:
+https://youtu.be/7Px73yH0JKo
+
 
 A working Android prototype of ConnectHub, built as a real 1:1 messaging app in the
 style of WhatsApp: an onboarding screen, a Chats List of contacts, individual
