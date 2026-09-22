@@ -26,7 +26,7 @@ toolbar).
 3. Let Gradle sync. It will fail the first time — that's expected until step 2 of
    Firebase setup below.
 
-## 2. Connect Firebase (required — the app will crash without this)
+## 2. Connect Firebase
 
 1. Go to https://console.firebase.google.com and create a new project (e.g. `connecthub-app`).
 2. Click **Add app → Android**. Use package name `com.connecthub.app`.
@@ -60,7 +60,7 @@ toolbar).
    credit card at all — this is a much lighter setup step than the Translation API was.
 9. Re-sync Gradle in Android Studio. The build should now succeed.
 
-## 3. Multi-language support (no API, no billing required)
+## 3. Multi-language support 
 
 **This app deliberately does NOT use a cloud translation API.** An earlier version of
 this project used Google Cloud Translation, but that requires a billing account —
