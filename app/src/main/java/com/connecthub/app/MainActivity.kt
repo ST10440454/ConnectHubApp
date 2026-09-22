@@ -19,17 +19,16 @@ class MainActivity : AppCompatActivity() {
 
         container = (application as ConnectHubApp).container
 
-        // Decide the start destination based on whether a user is already logged in,
-        // so re-opening the app skips straight to the Chats List if a session exists,
-        // and only shows Onboarding to a fresh/logged-out user.
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
+        val navController = navHostFragment?.navController
 
-        if (container.authRepository.currentUser() != null) {
-            navGraph.setStartDestination(R.id.chatListFragment)
+        if (navController != null && savedInstanceState == null) {
+            val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+            if (container.authRepository.currentUser() != null) {
+                navGraph.setStartDestination(R.id.chatListFragment)
+            }
+            navController.graph = navGraph
         }
-        navController.graph = navGraph
     }
 }
