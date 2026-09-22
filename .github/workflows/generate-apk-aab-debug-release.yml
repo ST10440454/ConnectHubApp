@@ -8,10 +8,10 @@ env:
   playstore_name: ConnectHub
 
 on:
-
+#Where release is writen , must match your branch name , I would suggest cloning your branch  at the end called release so it only builds the final code called release
   push:
     branches:
-      - 'release/**'
+      - 'release'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       # Set Current Date As Env Variable
       - name: Set current date as env variable
@@ -33,7 +33,7 @@ jobs:
         run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
 
       - name: Set Up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v3
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '17'
