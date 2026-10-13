@@ -25,6 +25,18 @@ private class FakeMessageRepository : MessageRepository {
         return AppResult.Success(Unit)
     }
 
+    override suspend fun sendImageMessage(
+        conversationId: String,
+        receiverId: String,
+        imageBytes: ByteArray,
+        mimeType: String
+    ): AppResult<Unit> {
+        if (shouldFail) return AppResult.Error("Failed to send image.")
+        lastConversationId = conversationId
+        lastReceiverId = receiverId
+        return AppResult.Success(Unit)
+    }
+
     override fun observeMessages(conversationId: String): Flow<List<Message>> = flowOf(emptyList())
 
     override fun observeAllMessagesForCurrentUser(): Flow<List<Message>> = flowOf(emptyList())

@@ -1,17 +1,16 @@
 package com.connecthub.app.util
 
-import android.util.Patterns
+private val EMAIL_REGEX = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\$")
 
 /**
- * Pure validation functions. Kept free of Android framework dependencies
- * (except Patterns, which is fine in unit tests via Robolectric or a fake)
- * so they are cheap and fast to unit test.
+ * Pure validation functions. Pure JVM with no Android dependencies
+ * so they are cheap and fast to unit test without stubbing/mocking framework classes.
  */
 object Validators {
 
     fun isValidEmail(email: String): Boolean {
         if (email.isBlank()) return false
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        return EMAIL_REGEX.matches(email.trim())
     }
 
     fun isValidPassword(password: String): Boolean {
