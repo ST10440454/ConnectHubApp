@@ -17,7 +17,7 @@
     <string name="register_title">Skep jou rekening</string>
     <string name="hint_display_name">Vertoonnaam</string>
     <string name="hint_password_hint_min">Wagwoord (minstens 6 karakters)</string>
-    <string name="hint_phone_optional">Foonnommer (opsioneel)</string>
+    <string name="hint_phone_optional">Foonnommer</string>
     <string name="hint_phone_helper">Voeg dit by sodat mense in jou kontakte jou op ConnectHub kan vind</string>
     <string name="action_register">Registreer</string>
     <string name="prompt_have_account">Het jy reeds \'n rekening?</string>

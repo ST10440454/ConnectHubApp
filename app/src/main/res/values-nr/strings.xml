@@ -17,7 +17,7 @@
     <string name="register_title">Yakha i-akhawunti yakho</string>
     <string name="hint_display_name">Ibizo elibonakalako</string>
     <string name="hint_password_hint_min">Iphasiwedi (okungasenani iinhlamvu ezi-6)</string>
-    <string name="hint_phone_optional">Inombolo yefoni (akuphoqelelekile)</string>
+    <string name="hint_phone_optional">Inombolo yefoni</string>
     <string name="hint_phone_helper">Faka lokhu khona abantu abakhoyo eebumakhelwaneni bakho bangakuthola ku-ConnectHub</string>
     <string name="action_register">Bhalisa</string>
     <string name="prompt_have_account">Ivele unayo i-akhawunti?</string>
