@@ -1,4 +1,12 @@
- import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
+
+val localProperties = Properties().apply {
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.inputStream().use { load(it) }
+    }
+}
 
 plugins {
     id("com.android.application")
@@ -18,6 +26,14 @@ android {
         versionName = "0.1-prototype"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val apiKey = localProperties.getProperty("API_KEY") ?: ""
+        val mapsApiKey = localProperties.getProperty("MAPS_API_KEY") ?: ""
+
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
+        buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
+        resValue("string", "api_key", apiKey)
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
     }
 
     buildTypes {
@@ -36,6 +52,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     packaging {
