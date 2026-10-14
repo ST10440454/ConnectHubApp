@@ -60,6 +60,25 @@ jobs:
             exit 1
           fi
 
+      # Write secrets and SDK configuration into local.properties right before Gradle build
+      - name: Create local.properties with secrets
+        env:
+          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
+          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          touch local.properties
+          if [ -n "$LOCAL_PROPERTIES" ]; then
+            echo "$LOCAL_PROPERTIES" >> local.properties
+          fi
+          if [ -n "$MAPS_API_KEY" ]; then
+            echo "MAPS_API_KEY=$MAPS_API_KEY" >> local.properties
+          fi
+          if [ -n "$API_KEY" ]; then
+            echo "API_KEY=$API_KEY" >> local.properties
+          fi
+          echo "sdk.dir=$ANDROID_HOME" >> local.properties
+
       - name: Run unit tests
         run: ./gradlew test
 
