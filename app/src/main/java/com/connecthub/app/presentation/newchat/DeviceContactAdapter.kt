@@ -10,6 +10,7 @@ import com.connecthub.app.R
 import com.connecthub.app.databinding.ItemDeviceContactBinding
 import com.connecthub.app.domain.model.DeviceContactMatch
 import com.connecthub.app.presentation.common.AvatarPalette
+import com.connecthub.app.presentation.common.tr
 
 class DeviceContactAdapter(
     private val onChatClick: (DeviceContactMatch) -> Unit,
@@ -39,12 +40,12 @@ class DeviceContactAdapter(
             background?.setColor(AvatarPalette.colorFor(name))
 
             if (match.matchedContact != null) {
-                binding.textStatus.text = binding.root.context.getString(R.string.on_connecthub)
-                binding.buttonAction.text = binding.root.context.getString(R.string.action_chat)
+                binding.textStatus.text = binding.root.context.tr(R.string.on_connecthub)
+                binding.buttonAction.text = binding.root.context.tr(R.string.action_chat)
                 binding.buttonAction.setOnClickListener { onChatClick(match) }
             } else {
                 binding.textStatus.text = match.deviceContact.phoneNumber
-                binding.buttonAction.text = binding.root.context.getString(R.string.action_invite)
+                binding.buttonAction.text = binding.root.context.tr(R.string.action_invite)
                 binding.buttonAction.setOnClickListener { onInviteClick(match) }
             }
         }

@@ -29,7 +29,7 @@ data class DeviceContact(
 
 /**
  * One row on the "New Chat" screen: a device contact, plus — if they're a registered
- * ConnectHub user — the matching [Contact] so the row can be tapped to start chatting.
+ * ConnectHub user — the matching Contact so the row can be tapped to start chatting.
  * [matchedContact] is null when this phone-book entry hasn't registered on ConnectHub yet.
  */
 data class DeviceContactMatch(

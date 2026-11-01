@@ -30,6 +30,8 @@ android {
         val apiKey = localProperties.getProperty("API_KEY") ?: ""
         val mapsApiKey = localProperties.getProperty("MAPS_API_KEY") ?: ""
 
+        val deeplKey = localProperties.getProperty("DEEPL_API_KEY") ?: ""
+        buildConfigField("String", "DEEPL_API_KEY", "\"$deeplKey\"")
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
         buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
         resValue("string", "api_key", apiKey)

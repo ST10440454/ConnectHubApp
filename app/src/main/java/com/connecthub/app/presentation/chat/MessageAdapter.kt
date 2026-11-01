@@ -14,6 +14,7 @@ import com.connecthub.app.databinding.ItemMessageSentBinding
 import com.connecthub.app.domain.model.Message
 import com.connecthub.app.domain.model.MessageStatus
 import com.connecthub.app.domain.model.MessageType
+import com.connecthub.app.presentation.common.languageManager
 import java.util.Date
 
 private const val VIEW_TYPE_SENT = 1
@@ -29,11 +30,14 @@ class MessageAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return if (viewType == VIEW_TYPE_SENT) {
+        val holder = if (viewType == VIEW_TYPE_SENT) {
             SentViewHolder(ItemMessageSentBinding.inflate(inflater, parent, false))
         } else {
             ReceivedViewHolder(ItemMessageReceivedBinding.inflate(inflater, parent, false))
         }
+        // Row layouts are inflated after the screen is created, so translate them here.
+        parent.context.languageManager.translateViewTree(holder.itemView)
+        return holder
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

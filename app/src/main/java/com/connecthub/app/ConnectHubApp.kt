@@ -2,7 +2,9 @@ package com.connecthub.app
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import com.connecthub.app.data.i18n.LanguageManager
 import com.connecthub.app.data.local.SettingsDataStore
+import com.connecthub.app.data.remote.DeepLTranslationService
 import com.connecthub.app.data.remote.DeviceContactsService
 import com.connecthub.app.data.remote.FirebaseAuthService
 import com.connecthub.app.data.remote.FirebaseStorageService
@@ -40,6 +42,7 @@ class AppContainer(application: Application) {
     private val deviceContactsService = DeviceContactsService(application)
 
     val settingsDataStore = SettingsDataStore(application)
+    val languageManager = LanguageManager(application, DeepLTranslationService(BuildConfig.DEEPL_API_KEY))
 
     val authRepository: AuthRepository = AuthRepositoryImpl(authService, firestoreService)
     val messageRepository: MessageRepository = MessageRepositoryImpl(firestoreService, authService, storageService)

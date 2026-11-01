@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -18,6 +18,8 @@ import com.connecthub.app.R
 import com.connecthub.app.databinding.FragmentSettingsBinding
 import com.connecthub.app.domain.model.SupportedLanguages
 import com.connecthub.app.presentation.ViewModelFactory
+import com.connecthub.app.presentation.common.languageManager
+import com.connecthub.app.presentation.common.tr
 import kotlinx.coroutines.launch
 
 class SettingsFragment : Fragment() {
@@ -76,7 +78,7 @@ class SettingsFragment : Fragment() {
                     isApplyingState = false
 
                     binding.textUserEmail.text = state.userEmail?.let {
-                        getString(R.string.signed_in_as, it)
+                        requireContext().tr(R.string.signed_in_as, it)
                     } ?: ""
 
                     if (state.loggedOut) {
@@ -88,25 +90,36 @@ class SettingsFragment : Fragment() {
     }
 
     /**
-     * Language selection is a static, system-level concern rather than app state:
-     * AppCompatDelegate.setApplicationLocales() applies the chosen locale immediately
-     * (recreating this Fragment/Activity to pick up the matching values-<code>/strings.xml)
-     * and persists it automatically across app restarts — no DataStore write needed here.
+     * Picking a language translates the app's English text through DeepL (first time only;
+     * the result is cached on the device), then recreates the Activity so every screen is
+     * redrawn in the new language. If translation fails the current language is kept.
      */
     private fun setUpLanguageDropdown() {
+        val languageManager = requireContext().languageManager
         val languages = SupportedLanguages.ALL
         val names = languages.map { it.displayName }
         binding.dropdownLanguage.setAdapter(
             ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, names)
         )
-
-        val currentTag = AppCompatDelegate.getApplicationLocales().toLanguageTags().substringBefore(",")
-        val currentLanguage = languages.firstOrNull { it.code == currentTag } ?: languages.first()
-        binding.dropdownLanguage.setText(currentLanguage.displayName, false)
+        binding.dropdownLanguage.setText(languageManager.current.displayName, false)
 
         binding.dropdownLanguage.setOnItemClickListener { _, _, position, _ ->
             val selected = languages.getOrNull(position) ?: return@setOnItemClickListener
-            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(selected.code))
+            if (selected.code == languageManager.current.code) return@setOnItemClickListener
+
+            binding.dropdownLanguage.isEnabled = false
+            viewLifecycleOwner.lifecycleScope.launch {
+                val success = languageManager.setLanguage(selected)
+                if (success) {
+                    requireActivity().recreate()
+                } else {
+                    binding.dropdownLanguage.setText(languageManager.current.displayName, false)
+                    binding.dropdownLanguage.isEnabled = true
+                    Toast.makeText(
+                        requireContext(), requireContext().tr(R.string.translation_failed), Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
     }
 

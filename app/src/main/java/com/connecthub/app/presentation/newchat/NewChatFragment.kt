@@ -20,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.connecthub.app.ConnectHubApp
 import com.connecthub.app.R
+import com.connecthub.app.presentation.common.tr
 import com.connecthub.app.databinding.FragmentNewChatBinding
 import com.connecthub.app.domain.model.DeviceContactMatch
 import com.connecthub.app.domain.model.conversationIdFor
@@ -119,7 +120,7 @@ class NewChatFragment : Fragment() {
     private fun inviteContact(match: DeviceContactMatch) {
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("smsto:${match.deviceContact.phoneNumber}")
-            putExtra("sms_body", getString(R.string.invite_message_body))
+            putExtra("sms_body", requireContext().tr(R.string.invite_message_body))
         }
         if (intent.resolveActivity(requireContext().packageManager) != null) {
             startActivity(intent)

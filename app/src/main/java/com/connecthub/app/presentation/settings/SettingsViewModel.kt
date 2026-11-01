@@ -22,12 +22,9 @@ sealed class SettingsIntent {
 }
 
 /**
- * Note: language selection is NOT handled here. Unlike dark mode/notifications,
- * which are app-specific preferences this ViewModel owns via SettingsDataStore,
- * the UI language is a system-level concern handled directly by SettingsFragment
- * through AppCompatDelegate.setApplicationLocales() — Android's per-app language
- * preferences API persists and applies it automatically, so there's no app-level
- * state to manage here.
+ * Note: language selection is NOT handled here. The UI language is owned by
+ * LanguageManager (DeepL runtime translation, cached on the device and persisted in its own
+ * SharedPreferences), which SettingsFragment calls directly.
  */
 class SettingsViewModel(
     private val settingsDataStore: SettingsDataStore,
