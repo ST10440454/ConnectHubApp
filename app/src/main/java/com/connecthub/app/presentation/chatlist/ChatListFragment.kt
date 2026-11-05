@@ -1,9 +1,12 @@
 package com.connecthub.app.presentation.chatlist
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.connecthub.app.ConnectHubApp
 import com.connecthub.app.R
+import com.connecthub.app.data.remote.PushTokenService
 import com.connecthub.app.databinding.FragmentChatListBinding
 import com.connecthub.app.presentation.ViewModelFactory
 import kotlinx.coroutines.launch
@@ -40,24 +44,41 @@ class ChatListFragment : Fragment() {
 
         binding.toolbar.setOnMenuItemClickListener { item ->
             if (item.itemId == R.id.action_settings) {
-                findNavController().navigate(R.id.action_chatList_to_settings)
+                if (findNavController().currentDestination?.id == R.id.chatListFragment) {
+                    findNavController().navigate(R.id.action_chatList_to_settings)
+                }
                 true
             } else {
                 false
             }
         }
 
+        // Every login/register lands here, so this is where the device registers for pushes.
+        viewLifecycleOwner.lifecycleScope.launch {
+            runCatching { PushTokenService().registerCurrentToken() }
+        }
+
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_CONTACTS)
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            viewModel.refreshContacts()
+        }
+
         binding.fabNewChat.setOnClickListener {
-            findNavController().navigate(R.id.action_chatList_to_newChat)
+            if (findNavController().currentDestination?.id == R.id.chatListFragment) {
+                findNavController().navigate(R.id.action_chatList_to_newChat)
+            }
         }
 
         adapter = ConversationAdapter { preview ->
-            val args = Bundle().apply {
-                putString("conversationId", preview.conversationId)
-                putString("contactId", preview.contact.uid)
-                putString("contactName", preview.contact.displayName)
+            if (findNavController().currentDestination?.id == R.id.chatListFragment) {
+                val args = Bundle().apply {
+                    putString("conversationId", preview.conversationId)
+                    putString("contactId", preview.contact.uid)
+                    putString("contactName", preview.contact.displayName)
+                }
+                findNavController().navigate(R.id.action_chatList_to_chat, args)
             }
-            findNavController().navigate(R.id.action_chatList_to_chat, args)
         }
         binding.recyclerConversations.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerConversations.adapter = adapter

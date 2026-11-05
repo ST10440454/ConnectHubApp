@@ -101,15 +101,17 @@ class NewChatFragment : Fragment() {
 
     private fun openChatWith(match: DeviceContactMatch) {
         val contact = match.matchedContact ?: return
-        // Reuse the exact same conversationId scheme as the Chats List, so opening
-        // a chat from here or from an existing preview always lands on the same thread.
-        val conversationId = conversationIdFor(requireCurrentUserId(), contact.uid)
-        val args = Bundle().apply {
-            putString("conversationId", conversationId)
-            putString("contactId", contact.uid)
-            putString("contactName", contact.displayName)
+        if (findNavController().currentDestination?.id == R.id.newChatFragment) {
+            // Reuse the exact same conversationId scheme as the Chats List, so opening
+            // a chat from here or from an existing preview always lands on the same thread.
+            val conversationId = conversationIdFor(requireCurrentUserId(), contact.uid)
+            val args = Bundle().apply {
+                putString("conversationId", conversationId)
+                putString("contactId", contact.uid)
+                putString("contactName", contact.displayName)
+            }
+            findNavController().navigate(R.id.action_newChat_to_chat, args)
         }
-        findNavController().navigate(R.id.action_newChat_to_chat, args)
     }
 
     private fun requireCurrentUserId(): String {

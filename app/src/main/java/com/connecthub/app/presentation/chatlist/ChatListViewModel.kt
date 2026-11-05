@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.connecthub.app.domain.model.ConversationPreview
 import com.connecthub.app.domain.repository.AuthRepository
+import com.connecthub.app.domain.usecase.GetDeviceContactMatchesUseCase
 import com.connecthub.app.domain.usecase.ObserveConversationsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 data class ChatListState(
@@ -17,7 +19,8 @@ data class ChatListState(
 
 class ChatListViewModel(
     observeConversationsUseCase: ObserveConversationsUseCase,
-    authRepository: AuthRepository
+    authRepository: AuthRepository,
+    private val getDeviceContactMatchesUseCase: GetDeviceContactMatchesUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(
@@ -27,9 +30,19 @@ class ChatListViewModel(
 
     init {
         viewModelScope.launch {
-            observeConversationsUseCase().collect { conversations ->
-                _state.value = _state.value.copy(conversations = conversations, isLoading = false)
-            }
+            observeConversationsUseCase()
+                .catch {
+                    _state.value = _state.value.copy(isLoading = false)
+                }
+                .collect { conversations ->
+                    _state.value = _state.value.copy(conversations = conversations, isLoading = false)
+                }
+        }
+    }
+
+    fun refreshContacts() {
+        viewModelScope.launch {
+            runCatching { getDeviceContactMatchesUseCase() }
         }
     }
 }

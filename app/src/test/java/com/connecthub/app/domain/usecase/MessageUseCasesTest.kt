@@ -1,6 +1,8 @@
 package com.connecthub.app.domain.usecase
 
+import com.connecthub.app.domain.model.Contact
 import com.connecthub.app.domain.model.Message
+import com.connecthub.app.domain.repository.ContactRepository
 import com.connecthub.app.domain.repository.MessageRepository
 import com.connecthub.app.util.AppResult
 import kotlinx.coroutines.flow.Flow
@@ -46,12 +48,29 @@ private class FakeMessageRepository : MessageRepository {
     }
 }
 
+private class FakeContactRepository : ContactRepository {
+    var isContactResult = true
+    var shouldThrowError = false
+
+    override fun observeRegisteredUsers(): Flow<List<Contact>> = flowOf(emptyList())
+
+    override fun observeContacts(): Flow<List<Contact>> = flowOf(emptyList())
+
+    override suspend fun isContact(uid: String): Boolean {
+        if (shouldThrowError) throw RuntimeException("Contact check error")
+        return isContactResult
+    }
+
+    override suspend fun replaceContacts(contacts: List<Contact>) {}
+}
+
 class MessageUseCasesTest {
 
     @Test
     fun `sending blank message is rejected before hitting repository`() = runTest {
         val repo = FakeMessageRepository()
-        val useCase = SendMessageUseCase(repo)
+        val contactRepo = FakeContactRepository()
+        val useCase = SendMessageUseCase(repo, contactRepo)
 
         val result = useCase("conv1", "receiverUid", "   ")
 
@@ -63,7 +82,8 @@ class MessageUseCasesTest {
     @Test
     fun `sending valid message reaches repository trimmed with correct ids`() = runTest {
         val repo = FakeMessageRepository()
-        val useCase = SendMessageUseCase(repo)
+        val contactRepo = FakeContactRepository()
+        val useCase = SendMessageUseCase(repo, contactRepo)
 
         val result = useCase("conv1", "receiverUid", "  Hello ConnectHub  ")
 
@@ -76,11 +96,29 @@ class MessageUseCasesTest {
     @Test
     fun `repository failure is propagated as error`() = runTest {
         val repo = FakeMessageRepository().apply { shouldFail = true }
-        val useCase = SendMessageUseCase(repo)
+        val contactRepo = FakeContactRepository()
+        val useCase = SendMessageUseCase(repo, contactRepo)
 
         val result = useCase("conv1", "receiverUid", "Hello")
 
         assertTrue(result is AppResult.Error)
         assertEquals("Failed to send.", (result as AppResult.Error).message)
     }
+
+    @Test
+    fun `sending message to non-contact returns contact error`() = runTest {
+        val repo = FakeMessageRepository()
+        val contactRepo = FakeContactRepository().apply { isContactResult = false }
+        val useCase = SendMessageUseCase(repo, contactRepo)
+
+        val result = useCase("conv1", "receiverUid", "Hello")
+
+        assertTrue(result is AppResult.Error)
+        assertEquals(
+            "You can only message people whose phone number is in your contacts. Save their number in your phone contacts to message them.",
+            (result as AppResult.Error).message
+        )
+        assertEquals(null, repo.lastSentContent)
+    }
 }
+

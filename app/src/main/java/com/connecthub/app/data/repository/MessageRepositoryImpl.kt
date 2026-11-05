@@ -3,6 +3,7 @@ package com.connecthub.app.data.repository
 import com.connecthub.app.data.remote.FirebaseAuthService
 import com.connecthub.app.data.remote.FirebaseStorageService
 import com.connecthub.app.data.remote.FirestoreService
+import com.connecthub.app.data.remote.PushRelayService
 import com.connecthub.app.data.remote.dto.MessageDto
 import com.connecthub.app.domain.model.Message
 import com.connecthub.app.domain.model.MessageStatus
@@ -16,7 +17,8 @@ import kotlinx.coroutines.flow.map
 class MessageRepositoryImpl(
     private val firestoreService: FirestoreService,
     private val authService: FirebaseAuthService,
-    private val storageService: FirebaseStorageService
+    private val storageService: FirebaseStorageService,
+    private val pushRelay: PushRelayService? = null
 ) : MessageRepository {
 
     override suspend fun sendMessage(conversationId: String, receiverId: String, content: String): AppResult<Unit> {
@@ -33,7 +35,7 @@ class MessageRepositoryImpl(
                 timestamp = System.currentTimeMillis(),
                 status = MessageStatus.SENT.name
             )
-            firestoreService.sendMessage(dto)
+            pushRelay?.notify(firestoreService.sendMessage(dto))
             AppResult.Success(Unit)
         } catch (e: Exception) {
             AppResult.Error(e.toFriendlyMessage())
@@ -61,7 +63,7 @@ class MessageRepositoryImpl(
                 timestamp = System.currentTimeMillis(),
                 status = MessageStatus.SENT.name
             )
-            firestoreService.sendMessage(dto)
+            pushRelay?.notify(firestoreService.sendMessage(dto))
             AppResult.Success(Unit)
         } catch (e: Exception) {
             AppResult.Error(e.toFriendlyMessage())

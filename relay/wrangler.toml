@@ -1,0 +1,9 @@
+name = "connecthub-push"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+[vars]
+FIREBASE_PROJECT_ID = "connecthub-88c1f"
+
+# The service-account key is a SECRET, not a var. Set it with:
+#   wrangler secret put FIREBASE_SERVICE_ACCOUNT

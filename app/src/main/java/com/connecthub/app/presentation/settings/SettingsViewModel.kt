@@ -4,10 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.connecthub.app.data.local.AppSettings
 import com.connecthub.app.data.local.SettingsDataStore
+import com.connecthub.app.data.remote.PushTokenService
 import com.connecthub.app.domain.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 
 data class SettingsState(
     val settings: AppSettings = AppSettings(),
@@ -52,7 +54,9 @@ class SettingsViewModel(
             is SettingsIntent.ToggleNotifications -> viewModelScope.launch {
                 settingsDataStore.setNotifications(intent.enabled)
             }
-            SettingsIntent.LogOut -> {
+            SettingsIntent.LogOut -> viewModelScope.launch {
+                // Stop pushes for this user on this phone; never let a slow network block logout.
+                withTimeoutOrNull(3_000) { runCatching { PushTokenService().clearToken() } }
                 authRepository.logout()
                 _state.value = _state.value.copy(loggedOut = true)
             }

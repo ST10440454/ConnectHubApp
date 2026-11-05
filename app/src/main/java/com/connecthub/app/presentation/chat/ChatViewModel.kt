@@ -12,6 +12,7 @@ import com.connecthub.app.util.AppResult
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
@@ -61,9 +62,13 @@ class ChatViewModel(
         }
 
         viewModelScope.launch {
-            observeMessagesUseCase(conversationId).collect { messages ->
-                _state.value = _state.value.copy(messages = messages)
-            }
+            observeMessagesUseCase(conversationId)
+                .catch { e ->
+                    _errors.send(e.message ?: "Failed to load messages")
+                }
+                .collect { messages ->
+                    _state.value = _state.value.copy(messages = messages)
+                }
         }
     }
 

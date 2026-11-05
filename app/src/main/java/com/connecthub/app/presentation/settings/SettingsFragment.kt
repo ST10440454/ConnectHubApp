@@ -21,6 +21,7 @@ import com.connecthub.app.presentation.ViewModelFactory
 import com.connecthub.app.presentation.common.languageManager
 import com.connecthub.app.presentation.common.tr
 import kotlinx.coroutines.launch
+import com.connecthub.app.data.remote.PushTokenService
 
 class SettingsFragment : Fragment() {
 
@@ -31,9 +32,6 @@ class SettingsFragment : Fragment() {
         ViewModelFactory((requireActivity().application as ConnectHubApp).container)
     }
 
-    // Guards against switch callbacks firing when we set their value
-    // programmatically from a state update (would otherwise create a feedback
-    // loop with the DataStore write).
     private var isApplyingState = false
 
     override fun onCreateView(

@@ -28,7 +28,7 @@
     <string name="action_attach_image">Attach image</string>
     <string name="content_description_shared_image">Shared image</string>
     <string name="empty_contacts_title">No contacts yet</string>
-    <string name="empty_contacts_subtitle">Once someone else registers on ConnectHub, they\'ll show up here and you can start chatting.</string>
+    <string name="empty_contacts_subtitle">People from your phone contacts who are on ConnectHub show up here. Tap + to find them. You can only message people whose number is in your contacts.</string>
 
     <!-- New Chat / Device Contacts -->
     <string name="new_chat_title">New Chat</string>

@@ -30,6 +30,9 @@ android {
         val apiKey = localProperties.getProperty("API_KEY") ?: ""
         val mapsApiKey = localProperties.getProperty("MAPS_API_KEY") ?: ""
 
+        val pushRelayUrl = localProperties.getProperty("PUSH_RELAY_URL") ?: ""
+        buildConfigField("String", "PUSH_RELAY_URL", "\"$pushRelayUrl\"")
+
         val deeplKey = localProperties.getProperty("DEEPL_API_KEY") ?: ""
         buildConfigField("String", "DEEPL_API_KEY", "\"$deeplKey\"")
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
@@ -70,6 +73,8 @@ android {
 }
 
 dependencies {
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("androidx.lifecycle:lifecycle-process:2.8.4")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.5.0")

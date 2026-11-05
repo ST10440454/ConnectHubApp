@@ -25,9 +25,9 @@ class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
 
-    private val conversationId: String by lazy { requireArguments().getString("conversationId").orEmpty() }
-    private val contactId: String by lazy { requireArguments().getString("contactId").orEmpty() }
-    private val contactName: String by lazy { requireArguments().getString("contactName").orEmpty() }
+    private val conversationId: String by lazy { arguments?.getString("conversationId").orEmpty() }
+    private val contactId: String by lazy { arguments?.getString("contactId").orEmpty() }
+    private val contactName: String by lazy { arguments?.getString("contactName").orEmpty() }
 
     private val viewModel: ChatViewModel by viewModels {
         ChatViewModelFactory(
@@ -63,7 +63,7 @@ class ChatFragment : Fragment() {
 
         binding.toolbar.title = contactName
         binding.toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
 
         adapter = MessageAdapter(currentUserId = viewModel.state.value.currentUserId)
@@ -88,22 +88,27 @@ class ChatFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.state.collect { state ->
+                        val b = _binding ?: return@collect
                         adapter.submitList(state.messages) {
-                            if (state.messages.isNotEmpty()) {
-                                binding.recyclerMessages.scrollToPosition(state.messages.size - 1)
+                            _binding?.let { validBinding ->
+                                if (state.messages.isNotEmpty()) {
+                                    validBinding.recyclerMessages.scrollToPosition(state.messages.size - 1)
+                                }
                             }
                         }
-                        if (binding.editMessage.text.toString() != state.draft) {
-                            binding.editMessage.setText(state.draft)
-                            binding.editMessage.setSelection(state.draft.length)
+                        if (b.editMessage.text.toString() != state.draft) {
+                            b.editMessage.setText(state.draft)
+                            val safeLen = state.draft.length.coerceAtMost(b.editMessage.text?.length ?: 0)
+                            b.editMessage.setSelection(safeLen)
                         }
-                        binding.buttonSend.isEnabled = !state.isSending && state.draft.isNotBlank()
-                        binding.buttonAttachImage.isEnabled = !state.isSending
+                        b.buttonSend.isEnabled = !state.isSending && state.draft.isNotBlank()
+                        b.buttonAttachImage.isEnabled = !state.isSending
                     }
                 }
                 launch {
                     viewModel.errors.collect { message ->
-                        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+                        val b = _binding ?: return@collect
+                        Snackbar.make(b.root, message, Snackbar.LENGTH_LONG).show()
                     }
                 }
             }

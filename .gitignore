@@ -55,3 +55,7 @@ Thumbs.db
 /app/reports/
 lint-results*.html
 lint-results*.xml
+
+*firebase-adminsdk*.json
+service-account*.json
+

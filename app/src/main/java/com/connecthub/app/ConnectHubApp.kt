@@ -4,10 +4,12 @@ import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.connecthub.app.data.i18n.LanguageManager
 import com.connecthub.app.data.local.SettingsDataStore
+import com.connecthub.app.data.messaging.NotificationChannels
 import com.connecthub.app.data.remote.DeepLTranslationService
 import com.connecthub.app.data.remote.DeviceContactsService
 import com.connecthub.app.data.remote.FirebaseAuthService
 import com.connecthub.app.data.remote.FirebaseStorageService
+import com.connecthub.app.data.remote.PushRelayService
 import com.connecthub.app.data.remote.FirestoreService
 import com.connecthub.app.data.repository.AuthRepositoryImpl
 import com.connecthub.app.data.repository.ContactRepositoryImpl
@@ -29,11 +31,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-/**
- * Minimal manual dependency container for the prototype.
- * Keeps the app free of a DI framework (Hilt/Koin) so grading
- * focuses on architecture, not build config — swap in Hilt later if desired.
- */
 class AppContainer(application: Application) {
 
     private val authService = FirebaseAuthService()
@@ -44,15 +41,17 @@ class AppContainer(application: Application) {
     val settingsDataStore = SettingsDataStore(application)
     val languageManager = LanguageManager(application, DeepLTranslationService(BuildConfig.DEEPL_API_KEY))
 
+    private val pushRelayService = PushRelayService(BuildConfig.PUSH_RELAY_URL)
+
     val authRepository: AuthRepository = AuthRepositoryImpl(authService, firestoreService)
-    val messageRepository: MessageRepository = MessageRepositoryImpl(firestoreService, authService, storageService)
+    val messageRepository: MessageRepository = MessageRepositoryImpl(firestoreService, authService, storageService, pushRelayService)
     val contactRepository: ContactRepository = ContactRepositoryImpl(firestoreService, authService)
     val deviceContactRepository: DeviceContactRepository = DeviceContactRepositoryImpl(deviceContactsService)
 
     val registerUserUseCase = RegisterUserUseCase(authRepository)
     val loginUserUseCase = LoginUserUseCase(authRepository)
-    val sendMessageUseCase = SendMessageUseCase(messageRepository)
-    val sendImageMessageUseCase = SendImageMessageUseCase(messageRepository)
+    val sendMessageUseCase = SendMessageUseCase(messageRepository, contactRepository)
+    val sendImageMessageUseCase = SendImageMessageUseCase(messageRepository, contactRepository)
     val observeMessagesUseCase = ObserveMessagesUseCase(messageRepository)
     val observeConversationsUseCase = ObserveConversationsUseCase(contactRepository, messageRepository, authRepository)
     val getDeviceContactMatchesUseCase = GetDeviceContactMatchesUseCase(deviceContactRepository, contactRepository)
@@ -65,9 +64,8 @@ class ConnectHubApp : Application() {
     override fun onCreate() {
         super.onCreate()
         container = AppContainer(this)
+        NotificationChannels.create(this)
 
-        // Apply the user's saved dark-mode preference before any Activity is created,
-        // so there's no flash of the wrong theme on cold start.
         CoroutineScope(Dispatchers.Main).launch {
             val settings = container.settingsDataStore.settingsFlow.first()
             AppCompatDelegate.setDefaultNightMode(

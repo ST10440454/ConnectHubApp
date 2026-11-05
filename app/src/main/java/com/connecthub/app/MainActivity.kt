@@ -7,6 +7,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
 import com.connecthub.app.databinding.ActivityMainBinding
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +19,9 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var container: AppContainer
         private set
+    private val notificationPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { /* nothing to do */ }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Must be registered before super.onCreate() so fragments restored after a
@@ -43,6 +51,15 @@ class MainActivity : AppCompatActivity() {
             val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
             if (container.authRepository.currentUser() != null) {
                 navGraph.setStartDestination(R.id.chatListFragment)
+            }
+            else {
+                navGraph.setStartDestination(R.id.loginFragment)
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
             navController.graph = navGraph
         }
