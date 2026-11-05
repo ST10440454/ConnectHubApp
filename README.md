@@ -31,12 +31,6 @@ is redrawn in the new language.
 **DeepL supports only three of South Africa's 11 official languages**, so the Settings
 dropdown offers English, Afrikaans, isiXhosa and isiZulu.
 
-Setup: add your DeepL API key to `local.properties` (gitignored):
-
-```
-DEEPL_API_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:fx
-```
-
 How it works:
 - `data/remote/DeepLTranslationService.kt` calls `POST /v2/translate` (Free keys end in `:fx`).
 - `data/i18n/LanguageManager.kt` caches translations in `filesDir/translations_<code>.json`,
