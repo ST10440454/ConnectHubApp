@@ -139,7 +139,7 @@ conversations — needs two physical devices.
     switch needs internet (it calls DeepL); then switch back to English to confirm it
     reverts cleanly.
 
-## 5. What's implemented vs. deferred
+## 5. What's implemented 
 
 **Implemented:**
 - Onboarding screen (branded welcome, first thing a fresh/logged-out user sees)
