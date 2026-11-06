@@ -1,6 +1,6 @@
 # ConnectHub — POE Prototype
 ## Presentation:
-https://youtu.be/7Px73yH0JKo
+[https://youtu.be/7Px73yH0JKo](https://youtu.be/UH9oQoKYd3o)
 
 A working Android prototype of ConnectHub, built as a real 1:1 messaging app in the
 style of WhatsApp: an onboarding screen, a Chats List of contacts, individual
